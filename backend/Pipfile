@@ -6,6 +6,14 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+sentence-transformers = "2.1.0"
+sentencepiece = "0.1.94"
+transformers = "4.15.0"
+torch = "1.7.1"
+torchvision = "0.11.2"
+bert-extractive-summarizer = "0.10.1"
+konlpy = "0.5.2"
+pandas = "*"
 
 [dev-packages]
 black = "*"
