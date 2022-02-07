@@ -20,15 +20,18 @@ def keyword_extraction(text):
     )
 
     n_gram_range = (2, 3)
-    count = CountVectorizer(ngram_range=n_gram_range).fit([tokenized_nouns])
-    candidates = count.get_feature_names()
+    try:
+        count = CountVectorizer(ngram_range=n_gram_range).fit([tokenized_nouns])
+        candidates = count.get_feature_names()
 
-    doc_embedding = MODEL.encode([text])
-    candidate_embeddings = MODEL.encode(candidates)
+        doc_embedding = MODEL.encode([text])
+        candidate_embeddings = MODEL.encode(candidates)
 
-    top_n = 5
-    distances = cosine_similarity(doc_embedding, candidate_embeddings)
-    keywords = [candidates[index] for index in distances.argsort()[0][-top_n:]]
+        top_n = 5
+        distances = cosine_similarity(doc_embedding, candidate_embeddings)
+        keywords = [candidates[index] for index in distances.argsort()[0][-top_n:]]
+    except ValueError:
+        return None
     return keywords
 
 
