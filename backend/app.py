@@ -30,7 +30,6 @@ def get():
 
 @app.post("/text")
 def main(request: Text) -> Text:
-    # TODO: Split into subprocesses
     abs_summary = abstractive_summarizer(request.text)
     ext_summary = extractive_summarizer(request.text)
     keywords = keyword_extraction(request.text)
